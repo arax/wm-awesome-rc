@@ -15,7 +15,7 @@ local vicious = require("vicious")
 -- Load Debian menu entries
 local debian_menu = require("debian_menu")
 
--- Config for Naughy windows
+-- Config for Naughty pop-ups
 naughty_width = 600 -- in pixels
 naughty.config.presets.low.width = naughty_width
 naughty.config.presets.normal.width = naughty_width
@@ -196,7 +196,7 @@ for s = 1, screen.count() do
     batwidget:set_vertical(true)
     batwidget:set_background_color("#494B4F")
     batwidget:set_border_color(nil)
-    batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
+    batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } }})
     vicious.register(batwidget, vicious.widgets.bat,
     function(widget, args)
       if args[2] < 20 and args[2] >= 10 and args[1] == "-" then    
