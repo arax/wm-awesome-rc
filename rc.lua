@@ -375,7 +375,11 @@ globalkeys = awful.util.table.join(
               end),
 
     -- Keyb layout switch
-    awful.key({ "Mod1" }, "Shift_L", function () kbdcfg.switch() end)
+    awful.key({ "Mod1" }, "Shift_L", function () kbdcfg.switch() end),
+    awful.key({ modkey }, "b", function ()
+        mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
+    end),
+    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -464,7 +468,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][3] } },
     { rule = { class = "Pidgin" },
       properties = { tag = tags[1][4], floating = true } },
-    { rule = { class = "jd-Main" },
+    { rule = { class = "JDownloader" },
       properties = { tag = tags[1][5] } },
     { rule = { class = "mplayer2" },
       properties = { tag = tags[1][6] } },
