@@ -5,10 +5,11 @@ Awesome WM configuration files
 * Copy files to `$XDG_CONFIG_HOME/awesome/` or `$HOME/.config/awesome/`
 * Install dependencies
 * Configure incron with `incrontab -e`
-
-    /var/log/kern.log IN_MODIFY sh /etc/xdg/awesome/popLog.sh /var/log/kern.log
-    /var/log/auth.log IN_MODIFY sh /etc/xdg/awesome/popLog.sh /var/log/auth.log
-    /var/log/ufw.log IN_MODIFY sh /etc/xdg/awesome/popLog.sh /var/log/ufw.log
+~~~
+/var/log/kern.log IN_MODIFY sh $XDG_CONFIG_HOME/awesome/popLog.sh /var/log/kern.log
+/var/log/auth.log IN_MODIFY sh $XDG_CONFIG_HOME/awesome/popLog.sh /var/log/auth.log
+/var/log/ufw.log IN_MODIFY sh $XDG_CONFIG_HOME/awesome/popLog.sh /var/log/ufw.log
+~~~
 
 ## Compatibility
 * Awesome v3.5 (Last Christmas)
