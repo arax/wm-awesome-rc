@@ -199,7 +199,7 @@ for s = 1, screen.count() do
     batwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } }})
     vicious.register(batwidget, vicious.widgets.bat,
     function(widget, args)
-      if args[2] < 20 and args[2] >= 10 and args[1] == "-" then    
+      if args[2] < 20 and args[2] >= 10 and args[1] == "-" then
         naughty.notify({ preset = naughty.config.presets.low,
                          text = "I'm running low on power!",
                          title = "PM Notification",
@@ -220,7 +220,7 @@ for s = 1, screen.count() do
 
       return args[2]
     end, 61, "BAT1")
-    
+
     -- Create the CPU widget
     cpuwidget = awful.widget.graph()
     cpuwidget:set_width(50)
@@ -242,7 +242,7 @@ for s = 1, screen.count() do
        kbdcfg.widget:set_text(t)
        os.execute( kbdcfg.cmd .. t )
     end
-    
+
     -- Mouse bindings
     kbdcfg.widget:buttons(awful.util.table.join(
         awful.button({ }, 1, function () kbdcfg.switch() end)
@@ -365,6 +365,15 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+
+    awful.key({ modkey, "Shift" },   "x",
+          function ()
+              awful.prompt.run({ prompt = "Run in terminal: " },
+                  mypromptbox[mouse.screen].widget,
+                  function (...) awful.util.spawn(terminal .. " -e " .. ...) end,
+                  awful.completion.shell,
+                  awful.util.getdir("cache") .. "/history")
+          end),
 
     awful.key({ modkey }, "x",
               function ()
