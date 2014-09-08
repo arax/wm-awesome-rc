@@ -19,6 +19,7 @@ Awesome WM configuration files
 * source-highlight
 * libnotify-bin
 * incron (inotify cron daemon)
+* tango-icon-theme
 
 ## References
 * http://awesome.naquadah.org/wiki/Dbus,_naughty_and_logs
