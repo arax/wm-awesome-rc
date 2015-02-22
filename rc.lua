@@ -386,11 +386,18 @@ for s = 1, screen.count() do
 
     -- Create the network widget
     netwidget = wibox.widget.textbox()
-    vicious.register(netwidget, vicious.widgets.net, 'eth0 <span color="#CC9393">${eth0 down_kb}</span> <span color="#7F9F7F">${eth0 up_kb}</span> || wlan0 <span color="#CC9393">${wlan0 down_kb}</span> <span color="#7F9F7F">${wlan0 up_kb}</span>', 3)
+    vicious.register(netwidget, vicious.widgets.net, 'eth0 <span color="#CC9393">${eth0 down_kb}</span> <span color="#7F9F7F">${eth0 up_kb}</span>', 3)
+
+    netwidget_wlan = wibox.widget.textbox()
+    local netwidget_wlan_str = 'wlan1 N/A'
+    if os.execute("/sbin/ifconfig wlan1") == 0 then
+      netwidget_wlan_str = 'wlan1 <span color="#CC9393">${wlan1 down_kb}</span> <span color="#7F9F7F">${wlan1 up_kb}</span>'
+    end
+    vicious.register(netwidget_wlan, vicious.widgets.net, netwidget_wlan_str, 3)
 
     -- Create the wifi widget
     wifiwidget = wibox.widget.textbox()
-    vicious.register(wifiwidget, vicious.widgets.wifi, "SSID ${ssid}", 30, "wlan0")
+    vicious.register(wifiwidget, vicious.widgets.wifi, "SSID ${ssid}", 30, "wlan1")
 
     -- Create the wifi widget
     fswidget = wibox.widget.textbox()
@@ -415,6 +422,8 @@ for s = 1, screen.count() do
     right_layout:add(wifiwidget)
     right_layout:add(separator)
     right_layout:add(netwidget)
+    right_layout:add(separator)
+    right_layout:add(netwidget_wlan)
     right_layout:add(separator)
     right_layout:add(memwidget)
     right_layout:add(separator)
